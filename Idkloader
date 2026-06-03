@@ -1771,8 +1771,8 @@ function OrionLib:MakeWindow(WindowConfig)
 
 					SetProps(MakeElement("Image", ""), {
 				    Name = "Avatar",
-    				Size = UDim2.new(0, 70, 0, 70),
-   					 Position = UDim2.new(1, -80, 0, 5),
+    				Size = UDim2.new(0, 120, 0, 120),
+   					 Position = UDim2.new(1, -130, 0, 5),
    					 BackgroundTransparency = 1
 					}),
 
