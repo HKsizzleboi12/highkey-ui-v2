@@ -1774,6 +1774,14 @@ function OrionLib:MakeWindow(WindowConfig)
     				Position = UDim2.new(1, -110, 0, 5),
     				BackgroundTransparency = 1
 				}),
+                    SetProps(MakeElement("Label", "⬤"), {
+   					Name = "AvatarCircle",
+    				Size = UDim2.new(0, 90, 0, 90),
+    				Position = UDim2.new(1, -95, 0, 3),
+    				TextScaled = true,
+    				BackgroundTransparency = 1,
+    				ZIndex = 0
+				}),
 					AddThemeObject(MakeElement("Stroke"), "Stroke")
 				}), "Second")
 				
