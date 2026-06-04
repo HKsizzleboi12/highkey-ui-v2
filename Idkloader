@@ -779,12 +779,6 @@ function OrionLib:MakeWindow(WindowConfig)
                 Size = UDim2.new(0, 32, 0, 32),
                 Position = UDim2.new(0, 10, 0.5, 0)
             }), {
-			AddThemeObject(SetProps(MakeElement("Image", ""), {
-   			Name = "Avatar",
-    		Size = UDim2.new(0, 80, 0, 80),
-   			Position = UDim2.new(1, -90, 0, 8),
-   			BackgroundTransparency = 1
-			}), "Accent"),
                 AddThemeObject(MakeElement("Stroke"), "Stroke"),
                 MakeElement("Corner", 1)
             }),
@@ -1774,6 +1768,12 @@ function OrionLib:MakeWindow(WindowConfig)
 						TextWrapped = true,
 						TextXAlignment = Enum.TextXAlignment[Align]
 					}), "TextDark"),
+                    SetProps(MakeElement("Image", ""), {
+    				Name = "Avatar",
+    				Size = UDim2.new(0, 50, 0, 50),
+    				Position = UDim2.new(1, -60, 0, 8),
+    				BackgroundTransparency = 1
+				}),
 					AddThemeObject(MakeElement("Stroke"), "Stroke")
 				}), "Second")
 				
@@ -1815,15 +1815,7 @@ function OrionLib:MakeWindow(WindowConfig)
 						ParagraphFrame.Title.TextXAlignment = Enum.TextXAlignment[newalin]
 					end
 				end
-            function ParagraphFunction:SetAvatar(Image)
-   			 print("Children of ParagraphFrame:")
-
-    			for _, v in ipairs(ParagraphFrame:GetChildren()) do
-       			 print(v.Name, v.ClassName)
-    		end
-
-    			ParagraphFrame.Avatar.Image = Image
-			end
+                function ParagraphFunction:SetAvatar(Image)
     			ParagraphFrame.Avatar.Image = Image
 			end
 				return ParagraphFunction
