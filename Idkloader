@@ -1817,8 +1817,14 @@ function OrionLib:MakeWindow(WindowConfig)
 						ParagraphFrame.Title.TextXAlignment = Enum.TextXAlignment[newalin]
 					end
 				end
-                function ParagraphFunction:SetAvatar(Image)
-    			ParagraphFrame.Avatar.Image = Image
+				function ParagraphFunction:SetAvatar(Image)
+    			ParagraphFrame.Avatar.Image = Image or ""
+
+    			if Image == "" or not Image then
+        		ParagraphFrame.Avatar.Visible = false
+    		else
+        		ParagraphFrame.Avatar.Visible = true
+   			end
 			end
 				return ParagraphFunction
 			end
