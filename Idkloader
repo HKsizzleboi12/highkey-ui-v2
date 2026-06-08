@@ -625,7 +625,7 @@ function OrionLib:MakeWindow(WindowConfig)
 	local MainWindow = AddThemeObject(SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(255, 255, 255), 0, 10), {
 		Parent = Orion,
 		Position = UDim2.new(0.5, -307, 0.5, -172),
-		Size = UDim2.new(0, 615, 0, 344),
+		Size = UDim2.new(0, 750, 0, 500),
 		ClipsDescendants = true
 	}), {
 		--SetProps(MakeElement("Image", "rbxassetid://3523728077"), {
@@ -657,7 +657,45 @@ function OrionLib:MakeWindow(WindowConfig)
 		DragPoint,
 		WindowStuff
 	}), "Main")
-
+	local UIS = game:GetService("UserInputService")
+	
+	local ResizeHandle = Instance.new("TextButton")
+	ResizeHandle.Name = "ResizeHandle"
+	ResizeHandle.Size = UDim2.new(0, 20, 0, 20)
+	ResizeHandle.Position = UDim2.new(1, -20, 1, -20)
+	ResizeHandle.Text = "◢"
+	ResizeHandle.BackgroundTransparency = 1
+	ResizeHandle.Parent = MainWindow
+	
+	local Resizing = false
+	local StartMouse
+	local StartSize
+	
+	ResizeHandle.MouseButton1Down:Connect(function()
+	    Resizing = true
+	    StartMouse = UIS:GetMouseLocation()
+	    StartSize = MainWindow.AbsoluteSize
+	end)
+	
+	UIS.InputEnded:Connect(function(Input)
+	    if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+	        Resizing = false
+	    end
+	end)
+	
+	UIS.InputChanged:Connect(function(Input)
+	    if Resizing and Input.UserInputType == Enum.UserInputType.MouseMovement then
+	        local MousePos = UIS:GetMouseLocation()
+	        local Delta = MousePos - StartMouse
+	
+	        MainWindow.Size = UDim2.new(
+	            0,
+	            math.max(500, StartSize.X + Delta.X),
+	            0,
+	            math.max(300, StartSize.Y + Delta.Y)
+	        )
+	    end
+	end)
 	if WindowConfig.ShowIcon then
 		WindowName.Position = UDim2.new(0, 50, 0, -24)
 		local WindowIcon = SetProps(MakeElement("Image", WindowConfig.Icon), {
